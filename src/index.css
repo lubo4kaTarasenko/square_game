@@ -16,7 +16,7 @@ code {
   height: 100px;
   background: purple;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 .container{
   width: 50%;
@@ -28,3 +28,28 @@ code {
   text-align:  center;
   margin-top: 20px;
 }
+#max{
+  width: 200px;
+  height: 200px;
+  border: 2px solid purple;
+  margin: auto;
+  margin-top: 20px;
+}
+#letters{  
+  width: 100px;
+  height: 100px;
+  background: green;
+  margin: auto;
+  margin-top: 100px;
+  text-align: center;
+  padding-top: 10px;
+  font-size: 5em;
+  color: white;
+}
+.start{
+  margin-top: 30px;
+}
+.task_field{
+  text-align: center;
+}
+
