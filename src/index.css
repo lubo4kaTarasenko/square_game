@@ -20,11 +20,12 @@ code {
 }
 .container{
   width: 50%;
-  height: 550px;
+  height: 600px;
   background: rgb(159, 233, 255);
   margin: auto;
   border: 2px solid black;
   margin-top: 20px;
+  position: relative;
 }
 #score{
   text-align:  center;
@@ -40,19 +41,36 @@ code {
 }
 #letters{  
   width: 100px;
-  height: 100px;
-  background: rgb(57, 211, 57);
+  height: 100px;  
   margin: auto;
   margin-top: 40px;
   text-align: center;
   padding-top: 10px;
   font-size: 5em;
-  color: white;
 }
 .start{
   margin-top: 30px;
 }
 .task_field{
   text-align: center;
+}
+.yellow{
+  background: yellow;
+  color: black;
+}
+.red{
+  background: red;
+
+}
+.green{
+  background: rgb(57, 211, 57);
+  color: white;
+}
+#plus{
+  display: inline;
+  font-size: 2em;
+  margin-left: 70px;
+  position: absolute;
+  top: 140px;
 }
 
