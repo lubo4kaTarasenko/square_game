@@ -36,15 +36,25 @@ export default class Square extends React.Component {
 
   isLetterEq(letter){
     document.addEventListener('keydown', function(event) {
-      if (event.code === `Key${letter}`) alert('hurray')
+      if (event.code === `Key${letter}`) this.countUp()
     })
+  }
+
+  countUp(){
+    const points = 10
+    const count = document.getElementById('numb')
+    let countVal = count.value
+    count.innerHTML = `${countVal += points}`
+  }
+
+  countDown(){
+
   }
 
 
   startGame(){
-    const letter = this.returnRandomLetter()
     //let timerId = 
-    setInterval(() => this.putLetter(letter), 1000);
+    setInterval(() => this.putLetter(this.returnRandomLetter()), 3000);
     //setTimeout(() => { clearInterval(timerId); alert('stop'); }, 5000);    
   }
 
