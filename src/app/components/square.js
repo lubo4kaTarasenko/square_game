@@ -4,7 +4,7 @@ export default class Square extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      //square
+     // square = []
     }
   }
   render() {
@@ -28,15 +28,23 @@ export default class Square extends React.Component {
     return letter
   }
 
-  putLetter(){
-    const letter = this.returnRandomLetter()
+  putLetter(letter){
     const lettersCont = document.getElementById('letters')
     lettersCont.innerHTML = `<b>${letter}</b>`
+    this.isLetterEq(letter)
   }
 
+  isLetterEq(letter){
+    document.addEventListener('keydown', function(event) {
+      if (event.code === `Key${letter}`) alert('hurray')
+    })
+  }
+
+
   startGame(){
+    const letter = this.returnRandomLetter()
     //let timerId = 
-    setInterval(() => this.putLetter(), 3000);
+    setInterval(() => this.putLetter(letter), 1000);
     //setTimeout(() => { clearInterval(timerId); alert('stop'); }, 5000);    
   }
 
