@@ -7,20 +7,22 @@ export default class Square extends React.Component {
       count: 100,
       letter: '',
       progress: 0
-     // square = []
     }
   }
   render() {
+    let count = this.state.count
+    let marginT =  (200 - count) / 2  
     return (
       <div className='container'> 
         <div className='grow_field'>
-            <div id='score'><b>Score = <span id='numb'>{this.state.count}</span></b></div> 
-            <div id='max'><div id='main'></div></div>        
+            <div id='score'><b>Score = <span id='numb'>{count}</span></b></div> 
+            <div id='max'><div id='main' style={ { width: count, height: count, marginTop: marginT } }>
+            </div></div>        
         </div>
         <div className='task_field'> 
           <div id='letters'>{this.state.letter}</div>
           <p><progress id="progress" max="60" value={this.state.progress} 
-          style={ { opacity: (this.state.letter ? 100 : 0)} } /></p>   
+            style={ { opacity: (this.state.letter ? 100 : 0)} } /></p>   
           <p><button className="start" onClick={()=>{this.startGame()}}>Start</button></p>     
         </div>
       </div>  
