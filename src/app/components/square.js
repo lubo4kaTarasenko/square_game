@@ -6,6 +6,7 @@ export default class Square extends React.Component {
     this.state = {
       count: 100,
       letter: '',
+      started: false,
       progress: 0,
       points: ''
     }
@@ -23,10 +24,16 @@ export default class Square extends React.Component {
         </div>
         <span id="plus">{this.state.points}</span>
         <div className='task_field'> 
-          <div id='letters' className={this.colorizeProgress()}>{this.state.letter}</div>
+          <div id='letters' className={this.colorizeProgress()}
+               style={ { opacity: (this.state.letter ? 100 : 0)}}
+          >{this.state.letter}</div>
           <p><progress id="progress" max="100" value={this.state.progress} 
             style={ { opacity: (this.state.letter ? 100 : 0)}} /></p>   
-          <p><button className="start" onClick={()=>{this.startGame()}}>Start</button></p>     
+          <p>
+            <button className="start" onClick={()=>{this.startGame()}}>
+              { this.state.started ? 'Restart' : 'Start' }
+            </button>
+          </p>
         </div>
       </div>  
   )}
@@ -58,6 +65,7 @@ export default class Square extends React.Component {
 
   isLetterEq(){
     document.addEventListener('keydown', (event) => {
+      if (this.state.count <= 0) return;
       event.code === `Key${this.state.letter}` ? this.countUp() : this.countDown();
     })
   }
@@ -98,7 +106,7 @@ export default class Square extends React.Component {
       clearInterval(this.timerId)
       clearInterval(this.progressTimer)
       this.progressTimer = null
-      alert('You are lost!');
+      alert('You lost!');
     }
   }
 
@@ -117,6 +125,14 @@ export default class Square extends React.Component {
   }
 
   startGame(){
+    this.setState({
+      started: true,
+      count: 100,
+      letter: '',
+      progress: 0,
+      points: ''
+    })
+    if(this.timerId) clearInterval(this.timerId);
     this.putRandomLetter() 
     this.timerId =  setInterval(() => this.putRandomLetter(), 2000); 
   }
