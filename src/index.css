@@ -73,4 +73,17 @@ code {
   position: absolute;
   top: 140px;
 }
+button{
+  border: 2px solid purple;
+  border-radius: 0;
+  margin-left: 5px;
+  font-size: 1em;
+  background: purple;
+  color: white;
+  padding: 5px 10px;
+}
+button:hover{
+  background: rebeccapurple;
+  cursor: pointer;
+}
 

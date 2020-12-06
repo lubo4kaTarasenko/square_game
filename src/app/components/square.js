@@ -4,6 +4,7 @@ export default class Square extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      new: true,
       count: 100,
       letter: '',
       started: false,
@@ -25,13 +26,16 @@ export default class Square extends React.Component {
         <span id="plus">{this.state.points}</span>
         <div className='task_field'> 
           <div id='letters' className={this.colorizeProgress()}
-               style={ { opacity: (this.state.letter ? 100 : 0)}}
-          >{this.state.letter}</div>
+             style={ { opacity: (this.state.new ? 0 : 100)}}>{this.state.letter}</div>
           <p><progress id="progress" max="100" value={this.state.progress} 
             style={ { opacity: (this.state.letter ? 100 : 0)}} /></p>   
           <p>
             <button className="start" onClick={()=>{this.startGame()}}>
-              { this.state.started ? 'Restart' : 'Start' }
+              { this.state.new ? 'Start' : 'Restart' }
+            </button>
+            <button className='stop' onClick={()=>{this.stopGame()}}
+              style={ { display: (this.state.new ? 'none' : 'initial')}} > 
+              { this.state.started ? 'Stop' : 'Continue' }
             </button>
           </p>
         </div>
@@ -130,10 +134,33 @@ export default class Square extends React.Component {
       count: 100,
       letter: '',
       progress: 0,
-      points: ''
-    })
-    if(this.timerId) clearInterval(this.timerId);
-    this.putRandomLetter() 
-    this.timerId =  setInterval(() => this.putRandomLetter(), 2000); 
+      points: '',
+      new: false
+    }, ()=>{
+      if(this.timerId) clearInterval(this.timerId);
+      if(this.progressTimer) clearInterval(this.progressTimer)
+      this.putRandomLetter() 
+      this.timerId = setInterval(() => this.putRandomLetter(), 2000);
+    }) 
+  }
+
+  stopGame(){
+    if (this.state.started){
+      this.setState({
+        started: false,
+        letter: '',
+        progress: 0,
+        points: ''   
+      })
+      if(this.timerId) clearInterval(this.timerId)
+      if (this.progressTimer) clearInterval(this.progressTimer)
+    }
+    else {
+      this.setState({
+        started: true   
+      })
+      this.putRandomLetter() 
+      this.timerId =  setInterval(() => this.putRandomLetter(), 2000);   
+    }
   }
 } 
